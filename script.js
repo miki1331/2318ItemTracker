@@ -1,39 +1,36 @@
-document.getElementById('itemForm').onsubmit = function(event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Item Tracker</h1>
+    <form id="itemForm">
+        <div>
+            <label for="workerName">Worker's Name (Optional):</label>
+            <input type="text" id="workerName" placeholder="Enter worker's name">
+        </div>
+        <div>
+            <label for="associateId">Associate ID:</label>
+            <input type="text" id="associateId" placeholder="Enter associate ID" pattern="\d*" required>
+        </div>
+        <div>
+            <label for="itemName">Item Name:</label>
+            <select id="itemName" required>
+                <option value="">Select an item</option>
+                <option value="Hard Hat">Hard Hat</option>
+                <option value="Safety Vest">Safety Vest</option>
+                <option value="Safety Glasses">Safety Glasses</option>
+                <option value="Banquet Shirt">Banquet Shirt</option>
+                <option value="Banquet Bow Tie">Banquet Bow Tie</option>
+            </select>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 
-    const workerName = document.getElementById('workerName').value.trim();
-    const associateId = document.getElementById('associateId').value.trim();
-    const itemName = document.getElementById('itemName').value;
-
-    // Validation: Ensure an item is selected and either name or ID is provided
-    if (!itemName || (!workerName && !associateId)) {
-        alert('Please select an item and enter either a worker\'s name or an associate ID.');
-        return;
-    }
-
-    // Prepare the data in the format expected by Google Apps Script
-    const formData = {
-        workerName: workerName,
-        associateId: associateId,
-        itemName: itemName
-    };
-
-    // Send the data to Google Sheets via Google Apps Script
-    fetch('https://script.google.com/macros/s/AKfycbx0LQ9x-EnOadqYtTIPqvFnPpxR7iYbntmrZ4RQKUkLyJgDF5LlLgZ6RGRjBRiq7Q5GPg/exec', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        alert('Item successfully recorded.');
-        // Reset the form or redirect the user as needed
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while recording the item.');
-    });
-};
+    <script src="script.js"></script>
+</body>
+</html>
