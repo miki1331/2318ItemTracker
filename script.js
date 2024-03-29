@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Use the Sheet.best endpoint URL here
-        fetch('YOUR_SHEET.BEST_ENDPOINT_URL', {
+        fetch('https://sheet.best/api/sheets/b737977e-8fd2-42f9-b589-320d130d031c', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
