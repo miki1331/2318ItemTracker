@@ -23,24 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const webAppUrl = 'https://script.google.com/macros/s/AKfycbySUMwClNB90EXYPOn138T-IyRbdrm203Gbgfd2BgAnXE5A4Z1w7wQZpGLpBVN6h8d_LQ/exec';
 
         // Fetch API to send the form data to the Google Sheet via Google Apps Script
-        function doPost(e) {
-    try {
-        // Parse the JSON payload
-        var data = JSON.parse(e.postData.contents);
-        var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-
-        // Append the data to the sheet
-        sheet.appendRow([new Date(), data.workerName, data.associateId, data.itemName]);
-
-        return ContentService.createTextOutput(JSON.stringify({ "result": "success" }))
-            .setMimeType(ContentService.MimeType.JSON);
-    } catch (error) {
-        console.error("Error appending row: ", error);
-        return ContentService.createTextOutput(JSON.stringify({ "result": "failure", "error": error.toString() }))
-            .setMimeType(ContentService.MimeType.JSON);
-    }
-}
-
+        fetch(webAppUrl, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
@@ -53,3 +42,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
