@@ -2,19 +2,23 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('itemForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // Capitalize the first letter of each part of the name
         const capitalize = (name) => name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+        const todayDate = new Date().toISOString().split('T')[0]; // Gets today's date in YYYY-MM-DD format
 
-        // Prepare the data object to send
+        // Determining which date to populate based on the action
+        const action = document.getElementById('action').value;
+        const datesToSend = action === 'checkout' ? 
+                             { "Check-Out Date": todayDate } : 
+                             { "Check-In Date": todayDate };
+
         const dataToSend = {
             "First Name": capitalize(document.getElementById('firstName').value.trim()),
             "Last Name": capitalize(document.getElementById('lastName').value.trim()),
             "Associate ID": document.getElementById('associateId').value.trim(),
             "Item Name": document.getElementById('itemName').value,
-            "Action": document.getElementById('action').value
+            ...datesToSend // Spread operator to include either check-out or check-in date
         };
 
-        // Use the Sheet.best endpoint URL here
         fetch('https://sheet.best/api/sheets/b737977e-8fd2-42f9-b589-320d130d031c', {
             method: 'POST',
             headers: {
