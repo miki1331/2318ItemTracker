@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const queryString = `?firstName=${firstName}&lastName=${lastName}&associateId=${associateId}&itemName=${itemName}&action=${action}`;
 
         // Updated Fetch API call with new query string
-        fetch('https://script.google.com/macros/s/AKfycbxtaIm4datDEpO_0s9urweP3SnLUDDFx3TlgQ-FO03K6IFVlk2xCfXkyI6eFSV9-IDXpg/exec' + queryString, {
+        fetch('https://script.google.com/macros/s/AKfycbwuJ6yE5kN0yu-6Xf8sziBwyCHArKGgRdcKr08AFZuX1c9EW7ixGiAwJWR7FS8FPMYvvg/exec' + queryString, {
             method: 'GET',
         })
         .then(response => response.json())
