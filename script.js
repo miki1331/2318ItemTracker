@@ -16,18 +16,20 @@ document.addEventListener('DOMContentLoaded', function() {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
+        'X-Api-Key': '06A@hl6IPdr3pwiaKHYF6$wkNVn4G05nVNoOIz!EgJaK%OhFmplsG_@RC#Ld0zo$' // Include your API key here
     },
     body: JSON.stringify(dataToSend)
 })
-.then(response => response.text()) // Get the response as text instead of response.json()
-.then(text => {
-    console.log('Response Text:', text); // This will show the HTML or error page content
-    return JSON.parse(text); // Try to parse text to JSON if it's expected to be JSON
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+    }
+    return response.json();
 })
 .then(data => {
     console.log('Success:', data);
     alert('Item successfully recorded.');
-    document.getElementById('itemForm').reset();
+    document.getElementById('itemForm').reset(); // Optional: Reset form after successful submission
 })
 .catch((error) => {
     console.error('Error:', error);
