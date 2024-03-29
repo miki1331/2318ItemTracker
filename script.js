@@ -6,16 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const associateId = encodeURIComponent(document.getElementById('associateId').value.trim());
         const itemName = encodeURIComponent(document.getElementById('itemName').value);
 
-        const queryParams = `?workerName=${workerName}&associateId=${associateId}&itemName=${itemName}`;
+        // Construct query string
+        const queryString = `?workerName=${workerName}&associateId=${associateId}&itemName=${itemName}`;
 
-        fetch('https://script.google.com/macros/s/AKfycbwcsvGAO-lRCQvz6H7bau-OX08cX3UJ1IORxu_dVfunMod7l6vwrSyz4LQDFHW-K-QY0w/exec' + queryParams, {
-            method: 'GET', // Changed to a GET request
+        // Fetch API to send the form data to the Google Sheet via Google Apps Script using GET request
+        fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec' + queryString, {
+            method: 'GET',
         })
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
             alert('Item successfully recorded.');
-            document.getElementById('itemForm').reset();
+            document.getElementById('itemForm').reset(); // Optional: Reset form after successful submission
         })
         .catch((error) => {
             console.error('Error:', error);
