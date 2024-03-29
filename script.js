@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const queryString = `?workerName=${workerName}&associateId=${associateId}&itemName=${itemName}`;
 
         // Fetch API to send the form data to the Google Sheet via Google Apps Script using GET request
-        fetch('https://script.google.com/macros/s/AKfycbwcsvGAO-lRCQvz6H7bau-OX08cX3UJ1IORxu_dVfunMod7l6vwrSyz4LQDFHW-K-QY0w/exec' + queryString, {
+        fetch('https://script.google.com/macros/s/AKfycbxtaIm4datDEpO_0s9urweP3SnLUDDFx3TlgQ-FO03K6IFVlk2xCfXkyI6eFSV9-IDXpg/exec' + queryString, {
             method: 'GET',
         })
         .then(response => response.json())
