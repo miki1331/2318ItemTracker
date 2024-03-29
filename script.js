@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = { workerName, associateId, itemName };
 
         // Fetch API to send the form data to the Google Sheet via Google Apps Script
-        fetch('https://script.google.com/macros/s/AKfycbxvvrI-f1LAi3ANTn7DZd5Bh6JxQ3IjBAFgYcwJ3S83dx002Uo732_I0lNGz_3HvfWqZw/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbzzOg4Qgcsn_58vgwVGkzMyFAGxQ-JZsmYgPyHolbGl65Fa2tal2MY_N277BfezwfTcIw/exec', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: { 'Content-Type': 'application/json' }
