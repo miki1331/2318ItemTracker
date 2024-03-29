@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Placeholder for your Google Apps Script Web App URL
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbySUMwClNB90EXYPOn138T-IyRbdrm203Gbgfd2BgAnXE5A4Z1w7wQZpGLpBVN6h8d_LQ/exec';
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbwNnM6tJ1jqyI7UXiihHJjnMH8ByzJ8C1ebXWoTTz8Z_BjQaHEBIKLOReHc8OkoTjXccQ/exec';
 
         // Fetch API to send the form data to the Google Sheet via Google Apps Script
         fetch(webAppUrl, {
