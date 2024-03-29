@@ -1,36 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Tracker</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Item Tracker</h1>
-    <form id="itemForm">
-        <div>
-            <label for="workerName">Worker's Name (Optional):</label>
-            <input type="text" id="workerName" placeholder="Enter worker's name">
-        </div>
-        <div>
-            <label for="associateId">Associate ID:</label>
-            <input type="text" id="associateId" placeholder="Enter associate ID" pattern="\d*" required>
-        </div>
-        <div>
-            <label for="itemName">Item Name:</label>
-            <select id="itemName" required>
-                <option value="">Select an item</option>
-                <option value="Hard Hat">Hard Hat</option>
-                <option value="Safety Vest">Safety Vest</option>
-                <option value="Safety Glasses">Safety Glasses</option>
-                <option value="Banquet Shirt">Banquet Shirt</option>
-                <option value="Banquet Bow Tie">Banquet Bow Tie</option>
-            </select>
-        </div>
-        <button type="submit">Submit</button>
-    </form>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('itemForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
 
-    <script src="script.js"></script>
-</body>
-</html>
+        const workerName = document.getElementById('workerName').value.trim();
+        const associateId = document.getElementById('associateId').value.trim();
+        const itemName = document.getElementById('itemName').value;
+
+        // Check required fields
+        if (!associateId || !itemName) {
+            alert('Please enter an associate ID and select an item.');
+            return;
+        }
+
+        // Prepare data for sending
+        const formData = {
+            workerName: workerName,
+            associateId: associateId,
+            itemName: itemName
+        };
+
+        // Placeholder for your Google Apps Script Web App URL
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbx0LQ9x-EnOadqYtTIPqvFnPpxR7iYbntmrZ4RQKUkLyJgDF5LlLgZ6RGRjBRiq7Q5GPg/exec';
+
+        // Fetch API to send the form data to the Google Sheet via Google Apps Script
+        fetch(webAppUrl, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert('Item successfully recorded.');
+            document.getElementById('itemForm').reset(); // Optional: Reset form after successful submission
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
+    });
+});
