@@ -9,28 +9,33 @@
 <body>
     <h1>Item Tracker</h1>
     <form id="itemForm">
-        <div>
-            <label for="workerName">Worker's Name:</label>
-            <input type="text" id="workerName" placeholder="Enter worker's name">
-        </div>
-        <div>
-            <label for="associateId">Associate ID:</label>
-            <!-- Changed type to text and added pattern to allow only numbers -->
-            <input type="text" id="associateId" placeholder="Enter associate ID" pattern="\d*">
-        </div>
-        <div>
-            <label for="itemName">Item Name:</label>
-            <select id="itemName" required>
-                <option value="">Select an item</option>
-                <option value="Hard Hat">Hard Hat</option>
-                <option value="Safety Vest">Safety Vest</option>
-                <option value="Safety Glasses">Safety Glasses</option>
-                <option value="Banquet Shirt">Banquet Shirt</option>
-                <option value="Banquet Bow Tie">Banquet Bow Tie</option>
-            </select>
-        </div>
-        <button type="submit">Submit</button>
-    </form>
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" placeholder="Enter first name">
+    </div>
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" placeholder="Enter last name">
+    </div>
+    <div>
+        <label for="associateId">Associate ID:</label>
+        <input type="text" id="associateId" placeholder="Enter associate ID" pattern="\d*">
+    </div>
+    <div>
+        <label for="itemName">Item Name:</label>
+        <select id="itemName" required>
+            <!-- Item options -->
+        </select>
+    </div>
+    <div>
+        <label for="action">Action:</label>
+        <select id="action" required>
+            <option value="checkout">Check-Out</option>
+            <option value="return">Return</option>
+        </select>
+    </div>
+    <button type="submit">Submit</button>
+</form>
 
     <script src="script.js"></script>
 </body>
