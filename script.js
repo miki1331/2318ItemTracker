@@ -1,30 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('itemForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault();
 
-        const workerName = document.getElementById('workerName').value.trim();
-        const associateId = document.getElementById('associateId').value.trim();
-        const itemName = document.getElementById('itemName').value;
+        const workerName = encodeURIComponent(document.getElementById('workerName').value.trim());
+        const associateId = encodeURIComponent(document.getElementById('associateId').value.trim());
+        const itemName = encodeURIComponent(document.getElementById('itemName').value);
 
-        console.log("Preparing to send data:", { workerName, associateId, itemName });
+        const queryParams = `?workerName=${workerName}&associateId=${associateId}&itemName=${itemName}`;
 
-        // Prepare data for sending
-        const formData = { workerName, associateId, itemName };
-
-        // Fetch API to send the form data to the Google Sheet via Google Apps Script
-        fetch('https://script.google.com/macros/s/AKfycbzzOg4Qgcsn_58vgwVGkzMyFAGxQ-JZsmYgPyHolbGl65Fa2tal2MY_N277BfezwfTcIw/exec', {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: { 'Content-Type': 'application/json' }
+        fetch('https://script.google.com/macros/s/AKfycbwcsvGAO-lRCQvz6H7bau-OX08cX3UJ1IORxu_dVfunMod7l6vwrSyz4LQDFHW-K-QY0w/exec' + queryParams, {
+            method: 'GET', // Changed to a GET request
         })
-        .then(response => {
-            console.log("Received response:", response);
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
             alert('Item successfully recorded.');
-            document.getElementById('itemForm').reset(); // Optional: Reset form after successful submission
+            document.getElementById('itemForm').reset();
         })
         .catch((error) => {
             console.error('Error:', error);
