@@ -2,14 +2,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('itemForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const workerName = encodeURIComponent(document.getElementById('workerName').value.trim());
+        const firstName = encodeURIComponent(document.getElementById('firstName').value.trim());
+        const lastName = encodeURIComponent(document.getElementById('lastName').value.trim());
         const associateId = encodeURIComponent(document.getElementById('associateId').value.trim());
         const itemName = encodeURIComponent(document.getElementById('itemName').value);
+        const action = encodeURIComponent(document.getElementById('action').value);
 
-        // Construct query string
-        const queryString = `?workerName=${workerName}&associateId=${associateId}&itemName=${itemName}`;
+        // Update the query string to include new fields
+        const queryString = `?firstName=${firstName}&lastName=${lastName}&associateId=${associateId}&itemName=${itemName}&action=${action}`;
 
-        // Fetch API to send the form data to the Google Sheet via Google Apps Script using GET request
+        // Updated Fetch API call with new query string
         fetch('https://script.google.com/macros/s/AKfycbxtaIm4datDEpO_0s9urweP3SnLUDDFx3TlgQ-FO03K6IFVlk2xCfXkyI6eFSV9-IDXpg/exec' + queryString, {
             method: 'GET',
         })
@@ -17,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             console.log('Success:', data);
             alert('Item successfully recorded.');
-            document.getElementById('itemForm').reset(); // Optional: Reset form after successful submission
+            document.getElementById('itemForm').reset(); // Reset form after successful submission
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -25,3 +27,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
