@@ -6,31 +6,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const associateId = document.getElementById('associateId').value.trim();
         const itemName = document.getElementById('itemName').value;
 
-        // Check required fields
-        if (!associateId || !itemName) {
-            alert('Please enter an associate ID and select an item.');
-            return;
-        }
+        console.log("Preparing to send data:", { workerName, associateId, itemName });
 
         // Prepare data for sending
-        const formData = {
-            workerName: workerName,
-            associateId: associateId,
-            itemName: itemName
-        };
-
-        // Placeholder for your Google Apps Script Web App URL
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbxvvrI-f1LAi3ANTn7DZd5Bh6JxQ3IjBAFgYcwJ3S83dx002Uo732_I0lNGz_3HvfWqZw/exec';
+        const formData = { workerName, associateId, itemName };
 
         // Fetch API to send the form data to the Google Sheet via Google Apps Script
-        fetch(webAppUrl, {
+        fetch('https://script.google.com/macros/s/AKfycbxvvrI-f1LAi3ANTn7DZd5Bh6JxQ3IjBAFgYcwJ3S83dx002Uo732_I0lNGz_3HvfWqZw/exec', {
             method: 'POST',
             body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            headers: { 'Content-Type': 'application/json' }
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log("Received response:", response);
+            return response.json();
+        })
         .then(data => {
             console.log('Success:', data);
             alert('Item successfully recorded.');
@@ -42,4 +32,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
