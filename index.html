@@ -8,40 +8,40 @@
 </head>
 <body>
     <h1>Item Tracker</h1>
-    <form id="itemForm">
+    <form id="itemForm" netlify>
     <div>
         <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" placeholder="Enter first name">
+        <input type="text" id="firstName" name="firstName" placeholder="Enter first name">
     </div>
     <div>
         <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" placeholder="Enter last name">
+        <input type="text" id="lastName" name="lastName" placeholder="Enter last name">
     </div>
     <div>
         <label for="associateId">Associate ID:</label>
-        <input type="text" id="associateId" placeholder="Enter associate ID" pattern="\d*">
+        <input type="text" id="associateId" name="associateId" placeholder="Enter associate ID" pattern="\d*">
     </div>
     <div>
         <label for="itemName">Item Name:</label>
-        <select id="itemName" required>
+        <select id="itemName" name="itemName" required>
             <option value="">Select an item</option>
-                <option value="Hard Hat">Hard Hat</option>
-                <option value="Safety Vest">Safety Vest</option>
-                <option value="Safety Glasses">Safety Glasses</option>
-                <option value="Banquet Shirt">Banquet Shirt</option>
-                <option value="Banquet Bow Tie">Banquet Bow Tie</option>
-            <!-- Item options -->
+            <option value="Hard Hat">Hard Hat</option>
+            <option value="Safety Vest">Safety Vest</option>
+            <option value="Safety Glasses">Safety Glasses</option>
+            <option value="Banquet Shirt">Banquet Shirt</option>
+            <option value="Banquet Bow Tie">Banquet Bow Tie</option>
         </select>
     </div>
     <div>
         <label for="action">Action:</label>
-        <select id="action" required>
+        <select id="action" name="action" required>
             <option value="checkin">Check-In</option>
             <option value="checkout">Check-Out</option>
         </select>
     </div>
     <button type="submit">Submit</button>
 </form>
+
 
     <script src="script.js"></script>
 </body>
